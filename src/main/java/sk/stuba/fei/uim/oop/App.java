@@ -8,7 +8,7 @@ public class App {
         int[] B_arr = new int[]{7,-3,-2,6,-90,90,-2,-5,3};
 
         for (int index = 0; index < A_arr.length && index < B_arr.length; index++) {
-            System.out.println(App.Compare(A_arr[index], B_arr[index]));
+            System.out.println(A_arr[index] + " Comparing with: " + B_arr[index] + " output: " + App.Compare(A_arr[index], B_arr[index]));
         }
 
     }
