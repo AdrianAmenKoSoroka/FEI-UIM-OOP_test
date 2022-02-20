@@ -1,24 +1,32 @@
 package sk.stuba.fei.uim.oop;
 
+import java.text.NumberFormat;
+import java.util.Scanner;
+
 public class App {
     public static void main(String[] args){
-        System.out.println("Hello world!");
+        final int MONTHS_YEAR = 12;
+        final int PERCENT = 100;
 
-        int[] A_arr = new int[]{1,6,7,9,10,15,20,-5,3,8};
-        int[] B_arr = new int[]{7,-3,-2,6,-90,90,-2,-5,3};
+        Scanner scanner = new Scanner(System.in);
 
-        for (int index = 0; index < A_arr.length && index < B_arr.length; index++) {
-            System.out.println(A_arr[index] + " Comparing with: " + B_arr[index] + " output: " + App.Compare(A_arr[index], B_arr[index]));
-        }
+        System.out.print("Principal: ");
+        int P = scanner.nextInt();
 
+        System.out.print("Annual Interest Rate: ");
+        float monthly_interest_rate = (scanner.nextFloat() / PERCENT) / MONTHS_YEAR;
+
+        System.out.print("Periods (Years): ");
+        int num_pays = (scanner.nextInt() * MONTHS_YEAR);
+
+        double mortgage = App.mortgage(P, monthly_interest_rate, num_pays);
+        String FormatedMortgage = NumberFormat.getCurrencyInstance().format(mortgage);
+        System.out.println("Mortgage: " + FormatedMortgage);
     }
 
-    public static int Compare(int A, int B){
-        if (A > B){
-            return 2;
-        }else if (A == B){
-            return 0;
-        }
-        return -1;
+    public static double mortgage(int principal, float monthly_interest_rate, int num_pays){
+        return principal * (monthly_interest_rate * (Math.pow(1+ monthly_interest_rate, num_pays)))
+                         / (Math.pow(1+ monthly_interest_rate, num_pays) - 1);
     }
+
 }
