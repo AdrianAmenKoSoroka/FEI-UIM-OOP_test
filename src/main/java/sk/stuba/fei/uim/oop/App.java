@@ -4,7 +4,7 @@ public class App {
     public static void main(String[] args){
         System.out.println("Hello world!");
 
-        int[] A_arr = new int[]{1,6,7,9,10,15,20,-5,3,-6};
+        int[] A_arr = new int[]{1,6,7,9,10,15,20,-5,3,8};
         int[] B_arr = new int[]{7,-3,-2,6,-90,90,-2,-5,3};
 
         for (int index = 0; index < A_arr.length && index < B_arr.length; index++) {
