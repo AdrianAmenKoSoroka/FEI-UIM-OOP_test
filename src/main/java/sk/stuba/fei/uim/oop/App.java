@@ -1,32 +1,110 @@
 package sk.stuba.fei.uim.oop;
 
-import java.text.NumberFormat;
+
+import java.sql.SQLOutput;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args){
-        final int MONTHS_YEAR = 12;
-        final int PERCENT = 100;
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter your Birth date format(YYYY-MM-DD): ");
 
-        Scanner scanner = new Scanner(System.in);
+        LocalDate BirthDate = LocalDate.parse(input.nextLine());
+        int[] Date = new int[]{BirthDate.getDayOfMonth(), BirthDate.getMonthValue(), BirthDate.getYear()};
+        String Horoskop = App.Horoskop(Date);
 
-        System.out.print("Principal: ");
-        int P = scanner.nextInt();
+        System.out.println("\nDen: " + Date[0] + " Mesiac: " + Date[1] + " Rok: " + Date[2]);
+        System.out.println("Tvoj Horoskop je: " + Horoskop);
 
-        System.out.print("Annual Interest Rate: ");
-        float monthly_interest_rate = (scanner.nextFloat() / PERCENT) / MONTHS_YEAR;
-
-        System.out.print("Periods (Years): ");
-        int num_pays = (scanner.nextInt() * MONTHS_YEAR);
-
-        double mortgage = App.mortgage(P, monthly_interest_rate, num_pays);
-        String FormatedMortgage = NumberFormat.getCurrencyInstance().format(mortgage);
-        System.out.println("Mortgage: " + FormatedMortgage);
     }
-
-    public static double mortgage(int principal, float monthly_interest_rate, int num_pays){
-        return principal * (monthly_interest_rate * (Math.pow(1+ monthly_interest_rate, num_pays)))
-                         / (Math.pow(1+ monthly_interest_rate, num_pays) - 1);
+    public static String Horoskop(int... Date){
+           switch (Date[1]) {
+               case 1 :{
+                   if (Date[0] >= 21){
+                       return "Vodnar";
+                   } else {
+                       return "Kozoroh";
+                   }
+               }
+               case 2 :{
+                   if (Date[0] <= 20){
+                       return "Vodnar";
+                   } else {
+                       return "Ryby";
+                   }
+               }
+               case 3:{
+                   if (Date[0] <= 20){
+                       return "Ryby";
+                   } else {
+                       return "Baran";
+                   }
+               }
+               case 4:{
+                   if (Date[0] <= 20){
+                       return "Ryby";
+                   } else {
+                       return "Byk";
+                   }
+               }
+               case 5:{
+                   if (Date[0] <= 21){
+                       return "Byk";
+                   } else {
+                       return "Blizenci";
+                   }
+               }
+               case 6: {
+                   if (Date[0] <= 21){
+                      return "Blizenci";
+                   }else {
+                       return "Rak";
+                   }
+               }
+               case 7: {
+                   if (Date[0] <= 22){
+                       return "Rak";
+                   }else{
+                       return "Lev";
+                   }
+               }
+               case 8: {
+                   if (Date[0] <= 22){
+                       return "Lev";
+                   } else {
+                       return "Panna";
+                   }
+               }
+               case 9: {
+                   if (Date[0] <= 22){
+                       return "Panna";
+                   }else {
+                       return "Vahy";
+                   }
+               }
+               case 10: {
+                   if (Date[0] <= 23){
+                       return "Vahy";
+                   }else {
+                       return "Skorpion";
+                   }
+               }
+               case 11: {
+                   if (Date[0] <= 22){
+                       return "Skorpion";
+                   }else {
+                       return "Strelec";
+                   }
+               }
+               case 12: {
+                   if (Date[0] <= 21){
+                       return "Strelec";
+                   }else {
+                       return "Vodnar";
+                   }
+               }
+           }
+           return "Wrong Birth Date please check!";
     }
-
 }
